@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class PlayersList extends Component {
   render() {
-    return "<p>List of Players</p>";
+    return <p>Player List Component.</p>;
   }
 }
 

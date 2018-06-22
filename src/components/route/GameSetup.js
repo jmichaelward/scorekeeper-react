@@ -5,3 +5,5 @@ class GameSetup extends Component {
     return <p>Please enter a name for each player.</p>;
   }
 }
+
+export default GameSetup;

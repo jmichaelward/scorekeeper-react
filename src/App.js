@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import Game from "./components/Game";
+import Header from "./components/Header";
+import Router from "./components/Router";
 
 class App extends Component {
   state = {
@@ -7,7 +8,12 @@ class App extends Component {
   };
 
   render() {
-    return <Game players={this.props.players} />;
+    return (
+      <div className="scorekeeper">
+        <Header title="Scorekeeper" />
+        <Router />
+      </div>
+    );
   }
 }
 

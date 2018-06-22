@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ScoreUpdater from "../ScoreUpdater";
 import PlayersList from "../PlayersList";
 
-class Game extends Component {
+class GameInProgress extends Component {
   render() {
     return (
       <div className="scorekeeper-game">
@@ -13,4 +13,4 @@ class Game extends Component {
   }
 }
 
-export default Game;
+export default GameInProgress;
