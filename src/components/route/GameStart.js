@@ -12,7 +12,7 @@ class GameStart extends Component {
 
   render() {
     return (
-      <form action="" className="game-start" onSubmit={this.getNumberOfPlayers}>
+      <form className="game-start" onSubmit={this.getNumberOfPlayers}>
         <p>Starting a new game.</p>
         <label>Number of Players:</label>
         <input

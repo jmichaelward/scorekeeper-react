@@ -11,30 +11,37 @@ class App extends Component {
     playerCount: 0
   };
 
-  constructor() {
-    super();
-    this.views = {
-      start: <GameStart setPlayerCount={this.setPlayerCount} />,
-      setup: <GameSetup />,
-      inProgress: <GameInProgress />
-    };
-  }
-
   loadGameView() {
     if (this.state.initialized) {
-      return this.views.inProgress;
+      return <GameInProgress players={this.state.players} />;
     }
 
     switch (!this.state.initialized) {
       case this.state.playerCount > 0:
-        return this.views.setup;
+        return (
+          <GameSetup
+            playerCount={this.state.playerCount}
+            setGameInitialized={this.setGameInitialized}
+          />
+        );
       default:
-        return this.views.start;
+        return <GameStart setPlayerCount={this.setPlayerCount} />;
     }
   }
 
+  /*
+  Set the number of players that were indiccated to play this game.
+   */
   setPlayerCount = count => {
     this.setState({ playerCount: count });
+  };
+
+  /*
+  Set the game initialization status.
+  We'll load the game in progress if the game has been initialized.
+   */
+  setGameInitialized = initialized => {
+    this.setState({ initialized });
   };
 
   render() {
