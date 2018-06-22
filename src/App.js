@@ -1,17 +1,47 @@
 import React, { Component } from "react";
 import Header from "./components/Header";
-import Router from "./components/Router";
+import GameSetup from "./components/route/GameSetup";
+import GameStart from "./components/route/GameStart";
+import GameInProgress from "./components/route/GameInProgress";
 
 class App extends Component {
   state = {
-    players: {}
+    initialized: false,
+    players: {},
+    playerCount: 0
+  };
+
+  constructor() {
+    super();
+    this.views = {
+      start: <GameStart setPlayerCount={this.setPlayerCount} />,
+      setup: <GameSetup />,
+      inProgress: <GameInProgress />
+    };
+  }
+
+  loadGameView() {
+    if (this.state.initialized) {
+      return this.views.inProgress;
+    }
+
+    switch (!this.state.initialized) {
+      case this.state.playerCount > 0:
+        return this.views.setup;
+      default:
+        return this.views.start;
+    }
+  }
+
+  setPlayerCount = count => {
+    this.setState({ playerCount: count });
   };
 
   render() {
     return (
-      <div className="scorekeeper">
+      <div className="game">
         <Header title="Scorekeeper" />
-        <Router />
+        {this.loadGameView()}
       </div>
     );
   }

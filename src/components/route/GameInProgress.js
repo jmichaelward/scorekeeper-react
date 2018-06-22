@@ -7,7 +7,7 @@ class GameInProgress extends Component {
     return (
       <div className="scorekeeper-game">
         <ScoreUpdater />
-        <PlayersList />
+        <PlayersList players={this.props.players} />
       </div>
     );
   }

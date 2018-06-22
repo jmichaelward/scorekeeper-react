@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import Player from "./Player";
 
 class PlayersList extends Component {
   render() {
-    return <p>Player List Component.</p>;
+    return <Player name={this.props.name} score={0} />;
   }
 }
 

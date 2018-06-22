@@ -1,15 +1,11 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import GameStart from "./route/GameStart";
-import GameSetup from "./route/GameSetup";
-import GameInProgress from "./route/GameInProgress";
+import App from "../App";
 
 const Router = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={GameStart} />
-      <Route path="/setup" component={GameSetup} />
-      <Route path="/game" component={GameInProgress} />
+      <Route path="/" component={App} />
     </Switch>
   </BrowserRouter>
 );
