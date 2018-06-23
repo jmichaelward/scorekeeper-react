@@ -10,8 +10,7 @@ class GameSetup extends Component {
     const players = [];
 
     for (let i = 0; i < this.props.playerCount; i++) {
-      let name = "player" + i;
-      players.push(<PlayerInput key={name} name={name} />);
+      players.push(<PlayerInput key={i} name={this.props.players[i].name} />);
     }
 
     return players;

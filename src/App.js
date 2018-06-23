@@ -20,6 +20,7 @@ class App extends Component {
       case this.state.playerCount > 0:
         return (
           <GameSetup
+            players={this.state.players}
             playerCount={this.state.playerCount}
             setGameInitialized={this.setGameInitialized}
           />
