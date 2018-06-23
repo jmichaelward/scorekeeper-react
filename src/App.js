@@ -7,7 +7,7 @@ import GameInProgress from "./components/route/GameInProgress";
 class App extends Component {
   state = {
     initialized: false,
-    players: {},
+    players: [],
     playerCount: 0
   };
 
@@ -30,16 +30,30 @@ class App extends Component {
   }
 
   /*
-  Set the number of players that were indiccated to play this game.
-   */
+    Set the number of players that were indiccated to play this game.
+    */
   setPlayerCount = count => {
     this.setState({ playerCount: count });
+    this.initPlayers(count);
   };
 
+  initPlayers(count) {
+    const players = [];
+
+    for (let i = 0; i < count; i++) {
+      players.push({
+        name: "",
+        score: 0
+      });
+    }
+
+    this.setState({ players });
+  }
+
   /*
-  Set the game initialization status.
-  We'll load the game in progress if the game has been initialized.
-   */
+    Set the game initialization status.
+    We'll load the game in progress if the game has been initialized.
+     */
   setGameInitialized = initialized => {
     this.setState({ initialized });
   };
