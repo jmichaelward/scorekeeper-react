@@ -5,7 +5,7 @@ class GameStart extends Component {
 
   getNumberOfPlayers = event => {
     event.preventDefault();
-    const playerCount = parseInt(this.playerCountRef.current.value);
+    const playerCount = parseInt(this.playerCountRef.current.value, 10);
 
     this.props.setPlayerCount(playerCount);
   };
