@@ -13,7 +13,7 @@ class GameStart extends Component {
   render() {
     return (
       <form className="game-start" onSubmit={this.getNumberOfPlayers}>
-        <p>Starting a new game.</p>
+        <p>Welcome to Scorekeeper. How many players?</p>
         <label>Number of Players:</label>
         <input
           type="num"
@@ -22,7 +22,7 @@ class GameStart extends Component {
           required
           placeholder={1}
         />
-        <button type="submit">Create new game</button>
+        <button type="submit">Click to Start</button>
       </form>
     );
   }
