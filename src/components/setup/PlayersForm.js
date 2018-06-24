@@ -2,12 +2,48 @@ import React, { Component } from "react";
 import PlayerInput from "./PlayerInput";
 
 class PlayersForm extends Component {
-  handleSubmit() {
-    alert("form submitted");
+  state = {
+    players: []
+  };
+
+  createPlayerInputs() {
+    const playerInputs = [];
+
+    for (let i = 0; i < this.props.players.length; i++) {
+      playerInputs.push(
+        <PlayerInput
+          id={i}
+          name={this.props.players[i].name}
+          updateName={this.updateName}
+          key={i}
+        />
+      );
+    }
+
+    return playerInputs;
   }
 
+  savePlayerData = event => {
+    event.preventDefault();
+    this.props.setGameInitialized(true);
+    this.props.setupPlayerData(this.state.players);
+  };
+
+  updateName = (index, name) => {
+    const players = this.props.players;
+
+    players[index].name = name;
+
+    this.setState({ players });
+  };
+
   render() {
-    return <form onSubmit={this.handleSubmit}>{this.props.players}</form>;
+    return (
+      <form className="players-form" onSubmit={this.savePlayerData}>
+        <div className="players-list">{this.createPlayerInputs()}</div>
+        <button type="submit">Start game</button>
+      </form>
+    );
   }
 }
 
