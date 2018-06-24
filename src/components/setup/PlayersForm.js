@@ -9,7 +9,11 @@ class PlayersForm extends Component {
   createPlayerInputs() {
     const playerInputs = [];
 
-    for (let i = 0; i < this.props.players.length; i++) {
+    for (
+      let i = 0, playerCount = this.props.players.length;
+      i < playerCount;
+      i++
+    ) {
       playerInputs.push(
         <PlayerInput
           id={i}
