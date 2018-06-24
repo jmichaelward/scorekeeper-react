@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Header from "./components/Header";
+import Header from "./components/stateless/Header";
 import GameSetup from "./components/route/GameSetup";
 import GameStart from "./components/route/GameStart";
 import GameInProgress from "./components/route/GameInProgress";

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PlayerInput from "./PlayerInput";
+import Button from "../stateless/Button";
 
 class PlayersForm extends Component {
   state = {
@@ -45,7 +46,7 @@ class PlayersForm extends Component {
     return (
       <form className="players-form" onSubmit={this.savePlayerData}>
         <div className="players-list">{this.createPlayerInputs()}</div>
-        <button type="submit">Start game</button>
+        <Button type="submit" label="Start game" />
       </form>
     );
   }

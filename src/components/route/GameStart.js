@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Button from "../stateless/Button";
 
 class GameStart extends Component {
   playerCountRef = React.createRef();
@@ -22,7 +23,7 @@ class GameStart extends Component {
           required
           placeholder={1}
         />
-        <button type="submit">Click to Start</button>
+        <Button type="submit" label="Click to Start" />
       </form>
     );
   }
