@@ -32,7 +32,7 @@ class App extends Component {
   }
 
   /*
-    Set the number of players that were indiccated to play this game.
+    Set the number of players that were indicated to play this game.
     */
   setPlayerCount = count => {
     this.setState({ playerCount: count });
