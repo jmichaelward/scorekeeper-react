@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Header from "./components/stateless/Header";
-import GameSetup from "./components/route/GameSetup";
-import GameStart from "./components/route/GameStart";
-import GameInProgress from "./components/route/GameInProgress";
+import GameSetup from "./components/view/GameSetup";
+import GameStart from "./components/view/GameStart";
+import GameInProgress from "./components/view/GameInProgress";
 
 class App extends Component {
   state = {
