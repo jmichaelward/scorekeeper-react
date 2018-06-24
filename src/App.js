@@ -22,6 +22,7 @@ class App extends Component {
           <GameSetup
             players={this.state.players}
             playerCount={this.state.playerCount}
+            setupPlayerData={this.setupPlayerData}
             setGameInitialized={this.setGameInitialized}
           />
         );
@@ -35,10 +36,10 @@ class App extends Component {
     */
   setPlayerCount = count => {
     this.setState({ playerCount: count });
-    this.initPlayers(count);
+    this.initializePlayers(count);
   };
 
-  initPlayers(count) {
+  initializePlayers(count) {
     const players = [];
 
     for (let i = 0; i < count; i++) {
@@ -48,8 +49,12 @@ class App extends Component {
       });
     }
 
-    this.setState({ players });
+    this.setupPlayerData(players);
   }
+
+  setupPlayerData = players => {
+    this.setState({ players });
+  };
 
   /*
     Set the game initialization status.
