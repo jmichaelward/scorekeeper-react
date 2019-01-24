@@ -19,7 +19,12 @@ class PlayersList extends Component {
   }
 
   render() {
-    return this.renderPlayers(this.props.players);
+    return (
+      <div className="players-list">
+        <h2>Player Scores</h2>
+        {this.renderPlayers(this.props.players)}
+      </div>
+    );
   }
 }
 
