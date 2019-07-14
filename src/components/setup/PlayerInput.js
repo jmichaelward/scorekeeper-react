@@ -8,8 +8,10 @@ class PlayerInput extends Component {
   render() {
     return (
       <input
+        className="players-form__name-input"
         name={this.props.name}
         type="text"
+        key={this.props.id}
         id={this.props.id}
         required
         placeholder="Player name"

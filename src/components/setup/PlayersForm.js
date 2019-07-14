@@ -3,31 +3,6 @@ import PlayerInput from "./PlayerInput";
 import Button from "../stateless/Button";
 
 class PlayersForm extends Component {
-  state = {
-    players: []
-  };
-
-  createPlayerInputs() {
-    const playerInputs = [];
-
-    for (
-      let i = 0, playerCount = this.props.players.length;
-      i < playerCount;
-      i++
-    ) {
-      playerInputs.push(
-        <PlayerInput
-          id={i}
-          name={this.props.players[i].name}
-          updateName={this.updateName}
-          key={i}
-        />
-      );
-    }
-
-    return playerInputs;
-  }
-
   savePlayerData = event => {
     event.preventDefault();
     this.props.setGameInitialized(true);
@@ -45,11 +20,22 @@ class PlayersForm extends Component {
   render() {
     return (
       <form className="players-form" onSubmit={this.savePlayerData}>
-        <div className="players-list">{this.createPlayerInputs()}</div>
+        <div className="players-form">
+          {getPlayerInputs(this.props.players, this.updateName)}
+        </div>
         <Button type="submit" label="Start game" />
       </form>
     );
   }
 }
+
+const getPlayerInputs = (players, updateName) => {
+  return players.map((player, index) => (
+    <div className="players-form__player" key={index}>
+      <p>Player {index + 1} name:</p>
+      <PlayerInput id={index} name={player.name} updateName={updateName} />
+    </div>
+  ));
+};
 
 export default PlayersForm;

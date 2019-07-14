@@ -1,29 +1,39 @@
 import React, { Component } from "react";
 import Player from "./Player";
+import "../styles/PlayersList.css";
 
 class PlayersList extends Component {
-  renderPlayers(players) {
-    let items = [];
+  constructor(props) {
+    super(props);
 
-    for (let i = 0, playerCount = players.length; i < playerCount; i++) {
-      items.push(
-        <Player
-          key={i}
-          name={this.props.players[i].name}
-          score={this.props.players[i].score}
-        />
-      );
-    }
+    this.state = {
+      activePlayer: this.props.activePlayer
+    };
+  }
 
-    return items;
+  isActivePlayer(key) {
+    return this.state.activePlayer === key;
   }
 
   render() {
     return (
-      <div className="players-list">
-        <h2>Player Scores</h2>
-        {this.renderPlayers(this.props.players)}
-      </div>
+      <section className="players-list-section" onClick={this.props.callback}>
+        <header className="section__hdr">
+          <h2 className="h2 section__hd">Player Scores</h2>
+        </header>
+        <ul className="players-list">
+          {this.props.players.map((player, index) => (
+            <Player
+              key={index}
+              playerNumber={player.id}
+              name={player.name}
+              score={player.score}
+              isActive={this.isActivePlayer(index)}
+              selectActivePlayer={this.props.selectActivePlayer}
+            />
+          ))}
+        </ul>
+      </section>
     );
   }
 }

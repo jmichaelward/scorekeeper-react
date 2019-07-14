@@ -1,0 +1,28 @@
+.player {
+    background-color: white;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 1rem 1.5rem;
+    width: 50%;
+}
+
+@media (min-width: 450px) {
+    .player {
+        width: 33%;
+    }
+}
+
+.player__name,
+.player__score-value {
+    font-weight: 700;
+}
+
+.player__score-value {
+    margin-left: 0.5rem;
+}
+
+.player--is-active {
+    background-color: #f5df4b;
+    cursor: pointer;
+    transition: background-color 250ms ease-in;
+}

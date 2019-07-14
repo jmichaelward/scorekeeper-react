@@ -3,32 +3,72 @@ import Header from "./components/stateless/Header";
 import GameSetup from "./components/view/GameSetup";
 import GameStart from "./components/view/GameStart";
 import GameInProgress from "./components/view/GameInProgress";
+import ResetButton from "./components/stateless/ResetButton";
+import "./App.css";
 
 class App extends Component {
-  state = {
-    initialized: false,
-    players: [],
-    playerCount: 0
-  };
+  constructor(props) {
+    super(props);
+    this.state = this.getInitialState();
+  }
+
+  getInitialState() {
+    return {
+      initialized: false,
+      players: [],
+      playerCount: 0,
+      activePlayer: 0
+    };
+  }
+
+  resetButton() {
+    return <ResetButton handler={this.startNewGame.bind(this)} />;
+  }
+
+  startNewGame() {
+    if (!this.confirmReset()) {
+      return;
+    }
+
+    this.setState(this.getInitialState());
+    this.render();
+  }
+
+  confirmReset() {
+    return window.confirm(
+      "Are you sure you want to reset this game? All data will be lost."
+    );
+  }
 
   loadGameView() {
     if (this.state.initialized) {
-      return <GameInProgress players={this.state.players} />;
+      return (
+        <div>
+          <GameInProgress
+            players={this.state.players}
+            playerCount={this.state.playerCount}
+            activePlayer={this.state.activePlayer}
+          />
+          {this.resetButton()}
+        </div>
+      );
     }
 
-    switch (!this.state.initialized) {
-      case this.state.playerCount > 0:
-        return (
+    if (this.state.playerCount > 0) {
+      return (
+        <div>
           <GameSetup
             players={this.state.players}
             playerCount={this.state.playerCount}
             setupPlayerData={this.setupPlayerData}
             setGameInitialized={this.setGameInitialized}
           />
-        );
-      default:
-        return <GameStart setPlayerCount={this.setPlayerCount} />;
+          {this.resetButton()}
+        </div>
+      );
     }
+
+    return <GameStart setPlayerCount={this.setPlayerCount} />;
   }
 
   /*
@@ -44,8 +84,10 @@ class App extends Component {
 
     for (let i = 0; i < count; i++) {
       players.push({
+        id: i,
         name: "",
-        score: 0
+        score: 0,
+        isActive: false
       });
     }
 

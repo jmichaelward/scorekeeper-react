@@ -1,0 +1,38 @@
+.players-list {
+    align-items: flex-start;
+    background-color: #ffffff;
+    display: flex;
+    flex: 1;
+    flex-flow: row wrap;
+    padding: 0;
+    user-select: none;
+    width: 100%;
+}
+
+@media (min-width: 450px) {
+    .players-list {
+        padding: 1rem 0 2rem 0;
+    }
+}
+
+.players-list-section {
+    padding: 2rem 0;
+}
+
+.players-form {
+    padding: 0.5rem 0 2rem 0;
+}
+
+.players-form__player {
+    display: block;
+    width: 100%;
+}
+
+.players-form__player + .players-form__player {
+    margin-top: 2rem;
+}
+
+.players-form__name-input {
+    max-width: 300px;
+    width: 100%;
+}
