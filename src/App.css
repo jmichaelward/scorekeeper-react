@@ -85,9 +85,11 @@ h2 {
   background-color: #fff;
   display: block;
   margin: 0 auto;
+  max-width: 1200px;
   min-height: 100vh;
   overflow: hidden;
   padding: 2rem;
+  width: 90%;
 }
 
 #scoreAdjustmentForm {
