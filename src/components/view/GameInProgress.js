@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PlayersList from "../PlayersList";
-import { gameCacheId } from "../../App";
+import {gameCacheId, saveGameState} from "../../App";
 
 class GameInProgress extends Component {
   constructor(props) {
@@ -38,6 +38,8 @@ class GameInProgress extends Component {
 
     this.setState(newState);
     this.setActivePlayer(nextPlayer, activePlayer);
+
+    saveGameState(this.state);
   }
 
   getNextActivePlayerIndex() {
