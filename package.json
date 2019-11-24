@@ -1,5 +1,6 @@
 {
   "name": "scorekeeper-react",
+  "homepage": "https://stuff.jmichaelward.com/scorekeeper",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
