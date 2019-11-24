@@ -80,9 +80,8 @@ class GameInProgress extends Component {
           >
             <input
               id="scoreInput"
-              type="text"
+              type="number"
               pattern="^-?([0-9]{1,9})$"
-              inputMode="numeric"
               maxLength="9"
             />
             <input type="submit" value="Submit" />
