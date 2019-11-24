@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import PlayersList from "../PlayersList";
+import { gameCacheId } from "../../App";
 
 class GameInProgress extends Component {
   constructor(props) {
     super(props);
     this.state = {
       players: props.players,
+      playerCount: props.playerCount,
       activePlayer: props.activePlayer
     };
+
+    window.localStorage.setItem(gameCacheId, JSON.stringify(this.state));
   }
 
   handleScoreUpdate(event) {

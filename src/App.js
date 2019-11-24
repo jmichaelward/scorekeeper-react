@@ -6,6 +6,8 @@ import GameInProgress from "./components/view/GameInProgress";
 import ResetButton from "./components/stateless/ResetButton";
 import "./App.css";
 
+export const gameCacheId = 'jmw-scorekeeper-game';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -13,11 +15,38 @@ class App extends Component {
   }
 
   getInitialState() {
+    const gameInProgress = this.getGameInProgress();
+
+    if (gameInProgress) {
+      return this.loadGameData(gameInProgress);
+    }
+
+    window.localStorage.setItem(gameCacheId, '');
+
     return {
       initialized: false,
       players: [],
       playerCount: 0,
       activePlayer: 0
+    };
+  }
+
+  getGameInProgress() {
+    return window.localStorage.getItem(gameCacheId);
+  }
+
+  loadGameData(gameInProgress) {
+    const {
+        players,
+        playerCount,
+        activePlayer
+    } = JSON.parse(gameInProgress);
+
+    return {
+      initialized: true,
+      players,
+      playerCount,
+      activePlayer,
     };
   }
 
