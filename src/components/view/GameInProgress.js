@@ -1,107 +1,79 @@
-import React, { Component } from "react";
+import React, {useState} from "react";
 import PlayersList from "../PlayersList";
-import {gameCacheId, saveGameState} from "../../App";
+import {saveGameState} from "../../App";
 
-class GameInProgress extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      players: props.players,
-      playerCount: props.playerCount,
-      activePlayer: props.activePlayer
+const GameInProgress = props => {
+    const [activePlayer, setActivePlayer] = useState(props.activePlayer);
+    const [playerCount] = useState(props.playerCount);
+    const [players] = useState(props.players);
+
+    const getPlayerId = event => {
+        const player = event.target.closest('.player');
+
+        return null === player ? activePlayer : parseInt(player.getAttribute('data-player'), 10);
     };
 
-    window.localStorage.setItem(gameCacheId, JSON.stringify(this.state));
-  }
+    const determineActivePlayer = event => {
+        setActivePlayer(getPlayerId(event));
 
-  handleScoreUpdate(event) {
-    event.preventDefault();
+        saveGameState({
+            players,
+            playerCount,
+            activePlayer
+        });
+    };
 
-    const form = event.target;
-    const score = parseInt(form.querySelector("#scoreInput").value, 10);
+    const handleScoreUpdate = event => {
+        event.preventDefault();
 
-    this.setPlayerScore(score);
+        const form = event.target;
+        const score = parseInt(form.querySelector("#scoreInput").value, 10);
 
-    form.reset();
-  }
+        setPlayerScore(activePlayer, score);
+        setNextActivePlayer();
 
-  setPlayerScore(score) {
-    let newState = this.state;
-    const activePlayerIndex = this.state.activePlayer;
-    const nextActivePlayerIndex = this.getNextActivePlayerIndex();
-    const players = document.getElementsByClassName("player");
-    const activePlayer = players[activePlayerIndex];
-    const nextPlayer = players[nextActivePlayerIndex];
+        form.reset();
+    };
 
-    newState.players[activePlayerIndex].score += isNaN(score) ? 0 : score;
-    newState.activePlayer = nextActivePlayerIndex;
+    const setPlayerScore = (player, score) => {
+        players[activePlayer].score += isNaN(score) ? 0 : score;
+    };
 
-    this.setState(newState);
-    this.setActivePlayer(nextPlayer, activePlayer);
+    const setNextActivePlayer = () => {
+        const nextActivePlayer = activePlayer < ( props.playerCount - 1 ) ? activePlayer + 1 : 0;
+        setActivePlayer(nextActivePlayer);
 
-    saveGameState(this.state);
-  }
+        saveGameState({
+            players,
+            playerCount,
+            activePlayer
+        });
+    };
 
-  getNextActivePlayerIndex() {
-    const playerIndex = this.props.playerCount - 1;
-    const activePlayer = parseInt(this.state.activePlayer, 10);
-
-    return activePlayer < playerIndex ? activePlayer + 1 : 0;
-  }
-
-  setActivePlayer(
-    nextPlayer,
-    previousPlayer,
-    activeSelector = "player--is-active"
-  ) {
-    if (nextPlayer === previousPlayer) {
-      return;
-    }
-
-    previousPlayer.classList.remove(activeSelector);
-    nextPlayer.classList.add(activeSelector);
-  }
-
-  selectActivePlayer(event) {
-    const activeSelector = "player--is-active";
-    const player = event.currentTarget;
-    const prevActive = player.parentElement.querySelector(`.${activeSelector}`);
-
-    this.setActivePlayer(player, prevActive, activeSelector);
-
-    this.setState(
-      { activePlayer: player.getAttribute("data-player") },
-      this.setActivePlayer(player, prevActive)
-    );
-  }
-
-  render() {
     return (
-      <div className="scorekeeper-game">
-        <h2>Update Player Score</h2>
-        <div className="score-updater">
-          <form
-            id="scoreAdjustmentForm"
-            onSubmit={this.handleScoreUpdate.bind(this)}
-          >
-            <input
-              id="scoreInput"
-              type="number"
-              pattern="^-?([0-9]{1,9})$"
-              maxLength="9"
+        <div className="scorekeeper-game" onClick={(event) => determineActivePlayer(event)}>
+            <h2>Update Player Score</h2>
+            <div className="score-updater">
+                <form
+                    id="scoreAdjustmentForm"
+                    onSubmit={handleScoreUpdate}
+                >
+                    <input
+                        id="scoreInput"
+                        type="number"
+                        pattern="^-?([0-9]{1,9})$"
+                        maxLength="9"
+                    />
+                    <input type="submit" value="Submit"/>
+                </form>
+            </div>
+            <PlayersList
+                id="players-list"
+                players={players}
+                activePlayer={activePlayer}
             />
-            <input type="submit" value="Submit" />
-          </form>
         </div>
-        <PlayersList
-          id="players-list"
-          players={this.state.players}
-          activePlayer={this.state.activePlayer}
-          selectActivePlayer={this.selectActivePlayer.bind(this)}
-        />
-      </div>
     );
-  }
-}
+};
 
 export default GameInProgress;

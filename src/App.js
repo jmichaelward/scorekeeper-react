@@ -14,16 +14,10 @@ export const getGameState = () => window.localStorage.getItem(gameCacheId);
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = this.getInitialState();
+    this.state = this.loadGameData(getGameState());
   }
 
-  getInitialState() {
-    const gameInProgress = getGameState();
-
-    if (gameInProgress) {
-      return this.loadGameData(gameInProgress);
-    }
-
+  getDefaultState() {
     return {
       initialized: false,
       players: [],
@@ -33,18 +27,22 @@ class App extends Component {
   }
 
   loadGameData(gameInProgress) {
-    const {
+    try {
+      const {
         players,
         playerCount,
         activePlayer
-    } = JSON.parse(gameInProgress);
+      } = JSON.parse(gameInProgress);
 
-    return {
-      initialized: true,
-      players,
-      playerCount,
-      activePlayer,
-    };
+      return {
+        initialized: true,
+        players,
+        playerCount,
+        activePlayer,
+      };
+    } catch (e) {
+      this.getDefaultState();
+    }
   }
 
   resetButton() {
@@ -58,7 +56,7 @@ class App extends Component {
 
     window.localStorage.setItem(gameCacheId, '');
 
-    this.setState(this.getInitialState());
+    this.setState(this.getDefaultState());
     this.render();
   }
 

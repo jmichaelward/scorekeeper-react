@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PlayerInput from "./PlayerInput";
 import Button from "../stateless/Button";
+import {saveGameState} from "../../App";
 
 class PlayersForm extends Component {
   savePlayerData = event => {

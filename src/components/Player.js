@@ -1,34 +1,28 @@
-import React, { Component } from "react";
+import React from "react";
 import "../styles/Player.css";
 
-class Player extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isActive: this.props.isActive
-    };
+const Player = (props) => {
+  const {
+    isActive,
+    playerNumber,
+    name,
+    score
+  } = props;
+
+  let classes = "player";
+
+  if (isActive) {
+    classes += " player--is-active";
   }
 
-  render() {
-    let classes = "player";
-
-    if (this.state.isActive) {
-      classes += " player--is-active";
-    }
-
-    return (
-      <li
-        className={classes}
-        onClick={this.props.selectActivePlayer}
-        data-player={this.props.playerNumber}
-      >
-        <p className="player__name">{this.props.name}</p>
+  return (
+      <li className={classes} data-player={playerNumber} data-active={isActive}>
+        <p className="player__name">{name}</p>
         <p className="player__score">
-          Score: <span className="player__score-value">{this.props.score}</span>
+          Score: <span className="player__score-value">{score}</span>
         </p>
       </li>
-    );
-  }
-}
+  );
+};
 
 export default Player;

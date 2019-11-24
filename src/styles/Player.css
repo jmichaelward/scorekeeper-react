@@ -21,7 +21,7 @@
     margin-left: 0.5rem;
 }
 
-.player--is-active {
+.player[data-active="true"] {
     background-color: #f5df4b;
     cursor: pointer;
     transition: background-color 250ms ease-in;
