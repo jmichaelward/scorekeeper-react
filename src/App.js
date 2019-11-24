@@ -41,7 +41,7 @@ class App extends Component {
         activePlayer,
       };
     } catch (e) {
-      this.getDefaultState();
+      return this.getDefaultState();
     }
   }
 
