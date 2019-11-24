@@ -21,8 +21,6 @@ class App extends Component {
       return this.loadGameData(gameInProgress);
     }
 
-    window.localStorage.setItem(gameCacheId, '');
-
     return {
       initialized: false,
       players: [],
@@ -58,6 +56,8 @@ class App extends Component {
     if (!this.confirmReset()) {
       return;
     }
+
+    window.localStorage.setItem(gameCacheId, '');
 
     this.setState(this.getInitialState());
     this.render();
