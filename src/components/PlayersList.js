@@ -12,8 +12,6 @@ const PlayersList = (props) => {
         activePlayer
     } = props;
 
-    console.log(props);
-
     return (
         <section className="players-list-section">
             <header className="section__hdr">
