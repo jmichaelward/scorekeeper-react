@@ -10,19 +10,17 @@ const gameCacheId = 'jmw-scorekeeper-game';
 const saveGameState = (state) => window.localStorage.setItem(gameCacheId, JSON.stringify(state));
 const getGameState = () => window.localStorage.getItem(gameCacheId);
 
+const defaultState = {
+  initialized: false,
+  players: [],
+  playerCount: 0,
+  activePlayer: 0
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = this.loadGameData(getGameState());
-  }
-
-  getDefaultState() {
-    return {
-      initialized: false,
-      players: [],
-      playerCount: 0,
-      activePlayer: 0
-    };
   }
 
   loadGameData(gameInProgress) {
@@ -40,7 +38,7 @@ class App extends Component {
         activePlayer,
       };
     } catch (e) {
-      return this.getDefaultState();
+      return defaultState;
     }
   }
 
@@ -51,7 +49,7 @@ class App extends Component {
 
     window.localStorage.setItem(gameCacheId, '');
 
-    this.setState(this.getDefaultState());
+    this.setState(defaultState);
   }
 
   resetScores() {
