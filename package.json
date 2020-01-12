@@ -1,7 +1,7 @@
 {
   "name": "scorekeeper-react",
   "homepage": "https://stuff.jmichaelward.com/scorekeeper",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "node-sass": "^4.13.0",
