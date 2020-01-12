@@ -1,0 +1,29 @@
+@import '../../scss/_variables.scss';
+
+$color-button-background: rgba(200, 220, 235, 0.8);
+$color-button-border: rgba(125,172,208,0.8);
+
+button, input[type=submit] {
+  -webkit-appearance: none;
+  background-color: $color-button-background;
+  border: 1px solid $color-button-border;
+  border-radius: 5px;
+  box-shadow: 3px 3px 0 $color-box-shadow;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+}
+
+button:focus, input[type=submit]:focus {
+  background-color: $color-button-background--focus;
+  color: $color-button-text--focus;
+  outline: none;
+  -moz-transition: background 0.3s, color 0.3s;
+  -webkit-transition: background 0.3s, color 0.3s;
+  transition: background 0.3s, color 0.3s;
+}
+
+.button-wrap {
+  margin-top: 1rem;
+}

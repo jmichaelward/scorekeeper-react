@@ -1,16 +1,16 @@
+@import '../../scss/variables';
+
 .players-list {
     align-items: flex-start;
-    background-color: #ffffff;
+    background-color: $color-app-foreground;
     display: flex;
     flex: 1;
     flex-flow: row wrap;
     padding: 0;
     user-select: none;
     width: 100%;
-}
 
-@media (min-width: 450px) {
-    .players-list {
+    @media (min-width: $media-width-small) {
         padding: 1rem 0 2rem 0;
     }
 }
@@ -25,11 +25,12 @@
 
 .players-form__player {
     display: block;
+    max-width: 600px;
     width: 100%;
-}
 
-.players-form__player + .players-form__player {
-    margin-top: 2rem;
+    & + .players-form__player {
+        margin-top: 1.5rem;
+    }
 }
 
 .players-form__name-input {

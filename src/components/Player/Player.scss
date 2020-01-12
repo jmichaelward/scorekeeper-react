@@ -1,13 +1,15 @@
+@import '../../scss/variables';
+
+$color-background-active-player: #f5df4b;
+
 .player {
-    background-color: white;
+    background-color: $color-app-foreground;
     border-radius: 5px;
     box-sizing: border-box;
     padding: 1rem 1.5rem;
     width: 50%;
-}
 
-@media (min-width: 450px) {
-    .player {
+    @media (min-width: $media-width-small) {
         width: 33%;
     }
 }
@@ -22,7 +24,7 @@
 }
 
 .player[data-active="true"] {
-    background-color: #f5df4b;
+    background-color: $color-background-active-player;
     cursor: pointer;
     transition: background-color 250ms ease-in;
 }
