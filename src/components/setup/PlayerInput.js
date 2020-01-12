@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 
+export const getInitialPlayerValue = (id) => {
+  return {id, name: '', score: 0, isActive: false }
+};
+
 class PlayerInput extends Component {
   updateInputValue = event => {
     this.props.updateName(this.props.id, event.target.value);

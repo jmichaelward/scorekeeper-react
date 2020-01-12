@@ -4,6 +4,7 @@ import GameSetup from "./components/view/GameSetup";
 import GameStart from "./components/view/GameStart";
 import GameInProgress from "./components/view/GameInProgress";
 import ResetControls from "./components/stateless/ResetControls";
+import { getInitialPlayerValue } from "./components/setup/PlayerInput";
 import "./App.css";
 
 const gameCacheId = 'jmw-scorekeeper-game';
@@ -112,13 +113,8 @@ class App extends Component {
   initializePlayers(count) {
     const players = [];
 
-    for (let i = 0; i < count; i++) {
-      players.push({
-        id: i,
-        name: "",
-        score: 0,
-        isActive: false
-      });
+    for (let playerId = 0; playerId < count; playerId++) {
+      players.push(getInitialPlayerValue(playerId));
     }
 
     this.setupPlayerData(players);
