@@ -47,7 +47,7 @@ class App extends Component {
 
   resetControls() {
     return (
-        <div>
+        <div className="reset-controls">
           <Button handler={this.startNewGame.bind(this)} label="Start Over" />
           <Button handler={this.resetScores.bind(this)} label="Reset Scores"/>
         </div>

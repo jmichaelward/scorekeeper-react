@@ -151,3 +151,11 @@ button:focus, input[type=submit]:focus {
 .button-wrap {
   margin-top: 1rem;
 }
+
+.reset-controls .button-wrap {
+  display: inline-block;
+}
+
+.reset-controls .button-wrap + .button-wrap {
+  margin-left: 1rem;
+}
