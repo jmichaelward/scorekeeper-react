@@ -135,7 +135,6 @@ class App extends Component {
 
 export {
   App as default,
-    gameCacheId,
     saveGameState,
     getGameState,
 }
