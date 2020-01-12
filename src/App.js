@@ -3,8 +3,8 @@ import Header from "./components/stateless/Header";
 import GameSetup from "./components/view/GameSetup";
 import GameStart from "./components/view/GameStart";
 import GameInProgress from "./components/view/GameInProgress";
-import ResetButton from "./components/stateless/ResetButton";
 import "./App.css";
+import Button from "./components/stateless/Button";
 
 export const gameCacheId = 'jmw-scorekeeper-game';
 
@@ -45,8 +45,13 @@ class App extends Component {
     }
   }
 
-  resetButton() {
-    return <ResetButton handler={this.startNewGame.bind(this)} />;
+  resetControls() {
+    return (
+        <div>
+          <Button handler={this.startNewGame.bind(this)} label="Start Over" />
+          <Button handler={this.resetScores.bind(this)} label="Reset Scores"/>
+        </div>
+    );
   }
 
   startNewGame() {
@@ -58,6 +63,16 @@ class App extends Component {
 
     this.setState(this.getDefaultState());
     this.render();
+  }
+
+  resetScores() {
+    const game = this.state;
+
+    game.players.forEach(player => {
+      player.score = 0;
+    });
+
+    this.setState(game);
   }
 
   confirmReset() {
@@ -75,7 +90,7 @@ class App extends Component {
             playerCount={this.state.playerCount}
             activePlayer={this.state.activePlayer}
           />
-          {this.resetButton()}
+          {this.resetControls()}
         </div>
       );
     }
@@ -89,7 +104,7 @@ class App extends Component {
             setupPlayerData={this.setupPlayerData}
             setGameInitialized={this.setGameInitialized}
           />
-          {this.resetButton()}
+          {this.resetControls()}
         </div>
       );
     }
