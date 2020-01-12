@@ -55,30 +55,31 @@ class App extends Component {
   }
 
   startNewGame() {
-    if (!this.confirmReset()) {
+    if (!this.confirmReset("Are you sure you want to reset this game? All data will be lost.")) {
       return;
     }
 
     window.localStorage.setItem(gameCacheId, '');
 
     this.setState(this.getDefaultState());
-    this.render();
   }
 
   resetScores() {
+    if (!this.confirmReset("Are you sure you want to reset scores for this game?")) {
+      return;
+    }
+
     const game = this.state;
 
     game.players.forEach(player => {
       player.score = 0;
     });
 
-    this.setState(game);
+    this.setGameInitialized(game);
   }
 
-  confirmReset() {
-    return window.confirm(
-      "Are you sure you want to reset this game? All data will be lost."
-    );
+  confirmReset(message) {
+    return window.confirm(message);
   }
 
   loadGameView() {
