@@ -64,42 +64,11 @@ class App extends Component {
       player.score = 0;
     });
 
-    this.setGameInitialized(game);
+    this.setState(game);
   }
 
   confirmReset(message) {
     return window.confirm(message);
-  }
-
-  loadGameView() {
-    if (this.state.initialized) {
-      return (
-        <div>
-          <GameInProgress
-            players={this.state.players}
-            playerCount={this.state.playerCount}
-            activePlayer={this.state.activePlayer}
-          />
-          <ResetControls restart={this.startNewGame.bind(this)} reset={this.resetScores.bind(this)} />
-        </div>
-      );
-    }
-
-    if (this.state.playerCount > 0) {
-      return (
-        <div>
-          <GameSetup
-            players={this.state.players}
-            playerCount={this.state.playerCount}
-            setupPlayerData={this.setupPlayerData}
-            setGameInitialized={this.setGameInitialized}
-          />
-          <ResetControls restart={this.startNewGame.bind(this)} />
-        </div>
-      );
-    }
-
-    return <GameStart setPlayerCount={this.setPlayerCount} />;
   }
 
   /*
@@ -132,11 +101,39 @@ class App extends Component {
     this.setState({ initialized });
   };
 
+  /**
+   * Render the game view.
+   *
+   * @returns {*}
+   */
   render() {
+    const { initialized, playerCount } = this.state;
     return (
       <div className="game">
         <Header title="Scorekeeper" />
-        {this.loadGameView()}
+        {
+          initialized && playerCount > 0 ?
+              <div>
+                <GameInProgress
+                    players={this.state.players}
+                    playerCount={this.state.playerCount}
+                    activePlayer={this.state.activePlayer}
+                />
+                <ResetControls restart={this.startNewGame.bind(this)} reset={this.resetScores.bind(this)} />
+              </div>
+          : playerCount === 0 ?
+              <GameStart setPlayerCount={this.setPlayerCount} />
+            :
+              <div>
+                <GameSetup
+                    players={this.state.players}
+                    playerCount={this.state.playerCount}
+                    setupPlayerData={this.setupPlayerData}
+                    setGameInitialized={this.setGameInitialized}
+                />
+                <ResetControls restart={this.startNewGame.bind(this)} />
+              </div>
+        }
       </div>
     );
   }
