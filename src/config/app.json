@@ -1,0 +1,9 @@
+{
+  "gameCacheId": "jmw-scorekeeper-game",
+  "defaultState": {
+    "initialized": false,
+    "players": [],
+    "playerCount": 0,
+    "activePlayer": 0
+  }
+}

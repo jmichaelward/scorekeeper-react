@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import config from './config/app.json';
 import Header from "./components/Header";
 import GameSetup from "./view/GameSetup";
 import GameStart from "./view/GameStart";
@@ -7,16 +8,9 @@ import ResetControls from "./components/ResetControls";
 import { getInitialPlayerValue } from "./components/PlayerInput";
 import "./App.scss";
 
-const gameCacheId = 'jmw-scorekeeper-game';
+const { gameCacheId, defaultState } = config;
 const saveGameState = (state) => window.localStorage.setItem(gameCacheId, JSON.stringify(state));
 const getGameState = () => window.localStorage.getItem(gameCacheId);
-
-const defaultState = {
-  initialized: false,
-  players: [],
-  playerCount: 0,
-  activePlayer: 0
-};
 
 class App extends Component {
   constructor(props) {
