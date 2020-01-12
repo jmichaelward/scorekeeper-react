@@ -1,0 +1,31 @@
+@import '../../scss/variables';
+
+$color-button-start-game-background: rgb(60, 190, 60);
+
+.players-form {
+  padding: 0.5rem 0 2rem 0;
+  max-width: 600px;
+}
+
+.players-form__player {
+  display: block;
+  width: 100%;
+
+  & + .players-form__player {
+    margin-top: 1.5rem;
+  }
+}
+
+.players-form__name-input {
+  width: 100%;
+}
+
+.game-start-button-wrap {
+  width: 100%;
+
+  button {
+    background-color: $color-button-start-game-background;
+    color: $color-app-foreground;
+    width: 100%;
+  }
+}

@@ -19,20 +19,3 @@
     padding: 2rem 0;
 }
 
-.players-form {
-    padding: 0.5rem 0 2rem 0;
-}
-
-.players-form__player {
-    display: block;
-    max-width: 600px;
-    width: 100%;
-
-    & + .players-form__player {
-        margin-top: 1.5rem;
-    }
-}
-
-.players-form__name-input {
-    width: 100%;
-}

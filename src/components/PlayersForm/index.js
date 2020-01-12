@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PlayerInput from "../PlayerInput";
 import Button from "../Button";
+import './PlayersForm.scss';
 
 class PlayersForm extends Component {
   savePlayerData = event => {
@@ -23,7 +24,7 @@ class PlayersForm extends Component {
         <div className="players-form">
           {getPlayerInputs(this.props.players, this.updateName)}
         </div>
-        <Button type="submit" label="Start game" />
+        <Button type="submit" label="Start game" wrapClass="game-start-button-wrap" />
       </form>
     );
   }
