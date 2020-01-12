@@ -6,10 +6,9 @@ import GameInProgress from "./components/view/GameInProgress";
 import "./App.css";
 import Button from "./components/stateless/Button";
 
-export const gameCacheId = 'jmw-scorekeeper-game';
-
-export const saveGameState = (state) => window.localStorage.setItem(gameCacheId, JSON.stringify(state));
-export const getGameState = () => window.localStorage.getItem(gameCacheId);
+const gameCacheId = 'jmw-scorekeeper-game';
+const saveGameState = (state) => window.localStorage.setItem(gameCacheId, JSON.stringify(state));
+const getGameState = () => window.localStorage.getItem(gameCacheId);
 
 class App extends Component {
   constructor(props) {
@@ -158,4 +157,9 @@ class App extends Component {
   }
 }
 
-export default App;
+export {
+  App as default,
+    gameCacheId,
+    saveGameState,
+    getGameState,
+}
