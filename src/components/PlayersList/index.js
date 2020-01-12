@@ -1,6 +1,6 @@
 import React from "react";
-import Player from "./Player";
-import "../styles/PlayersList.css";
+import Player from "../Player";
+import "./PlayersList.scss";
 
 const isActivePlayer = (activePlayer, key) => {
     return activePlayer === key;

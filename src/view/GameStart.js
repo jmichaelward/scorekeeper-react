@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Button from "../stateless/Button";
+import Button from "../components/Button";
 
 class GameStart extends Component {
   playerCountRef = React.createRef();

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import Header from "./components/stateless/Header";
-import GameSetup from "./components/view/GameSetup";
-import GameStart from "./components/view/GameStart";
-import GameInProgress from "./components/view/GameInProgress";
-import ResetControls from "./components/stateless/ResetControls";
-import { getInitialPlayerValue } from "./components/setup/PlayerInput";
-import "./App.css";
+import Header from "./components/Header";
+import GameSetup from "./view/GameSetup";
+import GameStart from "./view/GameStart";
+import GameInProgress from "./view/GameInProgress";
+import ResetControls from "./components/ResetControls";
+import { getInitialPlayerValue } from "./components/PlayerInput";
+import "./App.scss";
 
 const gameCacheId = 'jmw-scorekeeper-game';
 const saveGameState = (state) => window.localStorage.setItem(gameCacheId, JSON.stringify(state));

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import PlayersList from "../PlayersList";
-import {saveGameState} from "../../App";
+import PlayersList from "../components/PlayersList";
+import {saveGameState} from "../App";
 
 const GameInProgress = props => {
     const [activePlayer, setActivePlayer] = useState(props.activePlayer);

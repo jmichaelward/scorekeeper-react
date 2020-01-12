@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PlayersForm from "../setup/PlayersForm";
+import PlayersForm from "../components/PlayersForm";
 
 class GameSetup extends Component {
   render() {
