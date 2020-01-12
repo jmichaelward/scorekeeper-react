@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import PlayersList from "../components/PlayersList";
 import {saveGameState} from "../App";
+import ScoreAdjustmentForm from "../components/ScoreAdjustmentForm";
 
 const GameInProgress = props => {
     const [activePlayer, setActivePlayer] = useState(props.activePlayer);
@@ -53,20 +54,7 @@ const GameInProgress = props => {
     return (
         <div className="scorekeeper-game" onClick={(event) => determineActivePlayer(event)}>
             <h2>Update Player Score</h2>
-            <div className="score-updater">
-                <form
-                    id="scoreAdjustmentForm"
-                    onSubmit={handleScoreUpdate}
-                >
-                    <input
-                        id="scoreInput"
-                        type="number"
-                        pattern="^-?([0-9]{1,9})$"
-                        maxLength="9"
-                    />
-                    <input type="submit" value="Submit"/>
-                </form>
-            </div>
+            <ScoreAdjustmentForm handler={handleScoreUpdate}/>
             <PlayersList
                 id="players-list"
                 players={players}

@@ -1,0 +1,32 @@
+@import '../../scss/variables';
+
+#scoreAdjustmentForm {
+  display: block;
+  max-width: 100%;
+
+  @media (min-width: $media-width-small) {
+    display: flex;
+  }
+
+  input[type=number] {
+    display: block;
+    width: 100%;
+
+    @media (min-width: $media-width-small) {
+      flex: 0 0 auto;
+      min-width: 100px;
+      width: auto;
+    }
+  }
+
+  input[type=submit] {
+    display: block;
+    margin: 0.5rem 0 0 0;
+    width: 100%;
+
+    @media (min-width: $media-width-small) {
+      margin: 0 0 0 1rem;
+      width: auto;
+    }
+  }
+}

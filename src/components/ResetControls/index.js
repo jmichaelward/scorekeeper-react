@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../Button";
+import './ResetControls.scss';
 
 const ResetControls = ({ restart, reset }) => (
     <div className="reset-controls">

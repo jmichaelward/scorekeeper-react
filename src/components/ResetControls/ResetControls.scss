@@ -1,0 +1,19 @@
+@import '../../scss/variables';
+
+.reset-controls {
+  .button-wrap {
+    display: block;
+
+    @media (min-width: $media-width-small) {
+      display: inline-block;
+    }
+  }
+
+  .button-wrap + .button-wrap {
+    margin-left: 0;
+
+    @media (min-width: $media-width-small) {
+      margin-left: 1rem;
+    }
+  }
+}

@@ -9,7 +9,7 @@ $color-background-active-player: #f5df4b;
     padding: 1rem 1.5rem;
     width: 50%;
 
-    @media (min-width: $media-width-small) {
+    @media (min-width: $media-width-medium) {
         width: 33%;
     }
 }
