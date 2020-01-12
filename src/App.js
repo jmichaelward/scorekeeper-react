@@ -95,7 +95,7 @@ class App extends Component {
             setupPlayerData={this.setupPlayerData}
             setGameInitialized={this.setGameInitialized}
           />
-          <ResetControls restart={this.startNewGame.bind(this)} reset={this.resetScores.bind(this)} />
+          <ResetControls restart={this.startNewGame.bind(this)} />
         </div>
       );
     }
