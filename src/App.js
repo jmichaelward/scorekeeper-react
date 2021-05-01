@@ -46,7 +46,7 @@ class App extends Component {
 
     window.localStorage.setItem(gameCacheId, '');
 
-    this.setState(defaultState);
+    this.setState({ game: defaultState });
   }
 
   resetScores() {
@@ -54,35 +54,32 @@ class App extends Component {
       return;
     }
 
-    const game = this.state;
+    const { game } = this.state;
 
     game.players.forEach(player => {
       player.score = 0;
     });
 
-    this.setState(game);
+    this.setState({ game: game });
   }
 
   /*
     Set the number of players that were indicated to play this game.
     */
-  setPlayerCount = count => {
-    const game = this.state.game;
-
-    game.players = this.initializePlayers(count);
-    game.playerCount = game.players.length;
-
-    this.setState(game);
+  setPlayerCount = (game, count) => {
+    this.setState({ game: this.initializePlayers(game, count) });
   };
 
-  initializePlayers(count) {
-    const players = [];
+  initializePlayers(game, count) {
+    game.players = [];
 
     for (let playerId = 0; playerId < count; playerId++) {
-      players.push(getInitialPlayerValue(playerId));
+      game.players.push(getInitialPlayerValue(playerId));
     }
 
-    return players;
+    game.playerCount = game.players.length;
+
+    return game;
   }
 
   setupPlayerData = players => {
@@ -100,7 +97,7 @@ class App extends Component {
   setGameInitialized = (game, initialized) => {
     game.initialized = initialized;
 
-    this.setState(game);
+    this.setState({ game: game });
   };
 
   /**
@@ -136,12 +133,7 @@ class App extends Component {
   getGameInProgress = () => {
     return (
       <div>
-        <GameInProgress
-          game={this.state.game}
-          players={this.state.players}
-          playerCount={this.state.playerCount}
-          activePlayer={this.state.activePlayer}
-        />
+        <GameInProgress game={this.state.game} players={this.state.game.players} activePlayer={this.state.game.activePlayer} />
         <ResetControls restart={this.startNewGame.bind(this)} reset={this.resetScores.bind(this)} />
       </div>
     );
@@ -153,7 +145,7 @@ class App extends Component {
    * @returns {*}
    */
   loadViewComponent = () => {
-    const { initialized, playerCount } = this.state;
+    const { initialized, playerCount } = this.state.game;
 
     if (initialized && playerCount > 0) {
       return this.getGameInProgress();

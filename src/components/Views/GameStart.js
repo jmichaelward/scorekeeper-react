@@ -2,14 +2,12 @@ import React from "react";
 import Button from "../Button";
 
 const GameStart = (props) => {
-  const { setPlayerCount } = props;
+  const { game, setPlayerCount } = props;
   const playerCountRef = React.createRef();
 
   const getNumberOfPlayers = event => {
     event.preventDefault();
-    const playerCount = parseInt(playerCountRef.current.value, 10);
-
-    setPlayerCount(playerCount);
+    setPlayerCount(game, parseInt(playerCountRef.current.value, 10));
   };
 
     return (
