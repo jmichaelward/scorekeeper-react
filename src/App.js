@@ -67,8 +67,12 @@ class App extends Component {
     Set the number of players that were indicated to play this game.
     */
   setPlayerCount = count => {
-    this.setState({ playerCount: count });
-    this.initializePlayers(count);
+    const game = this.state.game;
+
+    game.players = this.initializePlayers(count);
+    game.playerCount = game.players.length;
+
+    this.setState(game);
   };
 
   initializePlayers(count) {
@@ -78,7 +82,7 @@ class App extends Component {
       players.push(getInitialPlayerValue(playerId));
     }
 
-    this.setupPlayerData(players);
+    return players;
   }
 
   setupPlayerData = players => {
@@ -98,7 +102,7 @@ class App extends Component {
    *
    * @returns {JSX.Element}
    */
-  getGameStart = () => <GameStart setPlayerCount={this.setPlayerCount} />
+  getGameStart = () => <GameStart game={this.state.game} setPlayerCount={this.setPlayerCount} />
 
   /**
    * Returns the GameSetup view.
@@ -109,6 +113,7 @@ class App extends Component {
     return (
       <div>
         <GameSetup
+          game={this.state.game}
           players={this.state.players}
           playerCount={this.state.playerCount}
           setupPlayerData={this.setupPlayerData}
@@ -128,6 +133,7 @@ class App extends Component {
     return (
       <div>
         <GameInProgress
+          game={this.state.game}
           players={this.state.players}
           playerCount={this.state.playerCount}
           activePlayer={this.state.activePlayer}

@@ -8,6 +8,7 @@ const GameSetup = (props) => {
       <div className="game-setup">
         <p>Please enter a name for each player.</p>
         <PlayersForm
+          game={props.game}
           players={players}
           setGameInitialized={setGameInitialized}
           setupPlayerData={setupPlayerData}
