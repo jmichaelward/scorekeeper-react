@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import PlayersForm from "../PlayersForm";
 
-class GameSetup extends Component {
-  render() {
+const GameSetup = (props) => {
+  const { players, setGameInitialized, setupPlayerData } = props;
+
     return (
       <div className="game-setup">
         <p>Please enter a name for each player.</p>
         <PlayersForm
-          players={this.props.players}
-          setGameInitialized={this.props.setGameInitialized}
-          setupPlayerData={this.props.setupPlayerData}
+          players={players}
+          setGameInitialized={setGameInitialized}
+          setupPlayerData={setupPlayerData}
         />
       </div>
     );
-  }
 }
 
 export default GameSetup;
