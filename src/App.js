@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import config from './config/app.json';
 import Header from "./components/Header";
-import GameSetup from "./view/GameSetup";
-import GameStart from "./view/GameStart";
-import GameInProgress from "./view/GameInProgress";
+import GameSetup from "./components/Views/GameSetup";
+import GameStart from "./components/Views/GameStart";
+import GameInProgress from "./components/Views/GameInProgress";
 import ResetControls from "./components/ResetControls";
 import { getInitialPlayerValue } from "./components/PlayerInput";
 import "./App.scss";

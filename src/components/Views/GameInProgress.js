@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import PlayersList from "../components/PlayersList";
-import {saveGameState} from "../App";
-import ScoreAdjustmentForm from "../components/ScoreAdjustmentForm";
+import PlayersList from "../PlayersList";
+import {saveGameState} from "../../App";
+import ScoreAdjustmentForm from "../ScoreAdjustmentForm";
 
 const GameInProgress = props => {
     const [activePlayer, setActivePlayer] = useState(props.activePlayer);
