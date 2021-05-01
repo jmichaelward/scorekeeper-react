@@ -118,8 +118,6 @@ class App extends Component {
       <div>
         <GameSetup
           game={this.state.game}
-          players={this.state.players}
-          playerCount={this.state.playerCount}
           setupPlayerData={this.setupPlayerData}
           setGameInitialized={this.setGameInitialized}
         />
