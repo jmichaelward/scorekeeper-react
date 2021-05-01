@@ -1,54 +1,59 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PlayersList from '../PlayersList'
-import { saveGameState } from '../../App'
 import ScoreAdjustmentForm from '../ScoreAdjustmentForm'
 
 const GameInProgress = props => {
-  const [activePlayer, setActivePlayer] = useState(props.activePlayer)
-  const [playerCount] = useState(props.playerCount)
-  const [players] = useState(props.players)
+  const { game } = props;
 
   const getPlayerId = event => {
     const player = event.target.closest('.player')
 
-    return null === player ? activePlayer : parseInt(player.getAttribute('data-player'), 10)
+    return null === player ? game.activePlayer : parseInt(player.getAttribute('data-player'), 10)
   }
 
+  /**
+   * Determine the active player to highlight.
+   *
+   * @param event
+   */
   const determineActivePlayer = event => {
-    setActivePlayer(getPlayerId(event))
-
-    saveGameState({
-      players,
-      playerCount,
-      activePlayer
-    })
+    game.activePlayer = getPlayerId(event);
+    props.update(game);
   }
 
+  /**
+   * Process the form submission.
+   *
+   * @param event
+   */
   const handleScoreUpdate = event => {
     event.preventDefault()
 
     const form = event.target
     const score = parseInt(form.querySelector('#scoreInput').value, 10)
 
-    setPlayerScore(activePlayer, score)
+    setPlayerScore(game.activePlayer, score)
     setNextActivePlayer()
 
     form.reset()
   }
 
+  /**
+   * Set the score for the player.
+   *
+   * @param player
+   * @param score
+   */
   const setPlayerScore = (player, score) => {
-    players[ activePlayer ].score += isNaN(score) ? 0 : score
+    game.players[ game.activePlayer ].score += isNaN(score) ? 0 : score
   }
 
+  /**
+   * Update the UI to the next active player.
+   */
   const setNextActivePlayer = () => {
-    const nextActivePlayer = activePlayer < ( props.playerCount - 1 ) ? activePlayer + 1 : 0
-    setActivePlayer(nextActivePlayer)
-
-    saveGameState({
-      players,
-      playerCount,
-      activePlayer
-    })
+    game.activePlayer = game.activePlayer < ( game.playerCount - 1 ) ? game.activePlayer + 1 : 0
+    props.update(game);
   }
 
   return (
@@ -57,8 +62,8 @@ const GameInProgress = props => {
       <ScoreAdjustmentForm handler={handleScoreUpdate}/>
       <PlayersList
         id="players-list"
-        players={players}
-        activePlayer={activePlayer}
+        players={game.players}
+        activePlayer={game.activePlayer}
       />
     </div>
   )

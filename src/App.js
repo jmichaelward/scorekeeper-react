@@ -101,6 +101,16 @@ class App extends Component {
   };
 
   /**
+   * Update the game state and save it.
+   *
+   * @param game
+   */
+  updateGameState = game => {
+    saveGameState(game);
+    this.setState({ game: game });
+  };
+
+  /**
    * Returns the GameStart view.
    *
    * @returns {JSX.Element}
@@ -133,7 +143,7 @@ class App extends Component {
   getGameInProgress = () => {
     return (
       <div>
-        <GameInProgress game={this.state.game} players={this.state.game.players} activePlayer={this.state.game.activePlayer} />
+        <GameInProgress game={this.state.game} update={this.updateGameState} />
         <ResetControls restart={this.startNewGame.bind(this)} reset={this.resetScores.bind(this)} />
       </div>
     );
