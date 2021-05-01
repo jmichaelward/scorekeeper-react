@@ -1,28 +1,27 @@
-import React, { Component } from "react";
+import React from "react";
 
 export const getInitialPlayerValue = (id) => {
   return {id, name: '', score: 0, isActive: false }
 };
 
-class PlayerInput extends Component {
-  updateInputValue = event => {
-    this.props.updateName(this.props.id, event.target.value);
-  };
-
-  render() {
-    return (
-      <input
-        className="players-form__name-input"
-        name={this.props.name}
-        type="text"
-        key={this.props.id}
-        id={this.props.id}
-        required
-        placeholder="Player name"
-        onChange={this.updateInputValue}
-      />
-    );
+const PlayerInput = (props) => {
+  const { id, name } = props;
+  const updateInputValue = event => {
+    props.updateName(id, event.target.value);
   }
+
+  return (
+    <input
+      className="players-form__name-input"
+      name={name}
+      type="text"
+      key={id}
+      id={id}
+      required
+      placeholder="Player name"
+      onChange={updateInputValue}
+    />
+  );
 }
 
 export default PlayerInput;
