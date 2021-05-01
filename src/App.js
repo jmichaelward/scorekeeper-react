@@ -38,7 +38,7 @@ class App extends Component {
   }
 
   startNewGame() {
-    if (!this.confirmReset("Are you sure you want to reset this game? All data will be lost.")) {
+    if (!window.confirm("Are you sure you want to reset this game? All data will be lost.")) {
       return;
     }
 
@@ -48,7 +48,7 @@ class App extends Component {
   }
 
   resetScores() {
-    if (!this.confirmReset("Are you sure you want to reset scores for this game?")) {
+    if (!window.confirm("Are you sure you want to reset scores for this game?")) {
       return;
     }
 
@@ -59,10 +59,6 @@ class App extends Component {
     });
 
     this.setState(game);
-  }
-
-  confirmReset(message) {
-    return window.confirm(message);
   }
 
   /*
