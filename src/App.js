@@ -92,38 +92,74 @@ class App extends Component {
   };
 
   /**
+   * Returns the GameStart view.
+   *
+   * @returns {JSX.Element}
+   */
+  getGameStart = () => <GameStart setPlayerCount={this.setPlayerCount} />
+
+  /**
+   * Returns the GameSetup view.
+   *
+   * @returns {JSX.Element}
+   */
+  getGameSetup = () => {
+    return (
+      <div>
+        <GameSetup
+          players={this.state.players}
+          playerCount={this.state.playerCount}
+          setupPlayerData={this.setupPlayerData}
+          setGameInitialized={this.setGameInitialized}
+        />
+        <ResetControls restart={this.startNewGame.bind(this)} />
+      </div>
+    );
+  }
+
+  /**
+   * Returns the GameInProgress view.
+   *
+   * @returns {JSX.Element}
+   */
+  getGameInProgress = () => {
+    return (
+      <div>
+        <GameInProgress
+          players={this.state.players}
+          playerCount={this.state.playerCount}
+          activePlayer={this.state.activePlayer}
+        />
+        <ResetControls restart={this.startNewGame.bind(this)} reset={this.resetScores.bind(this)} />
+      </div>
+    );
+  }
+
+  /**
+   * Determines which view to load based on the state of the game data.
+   *
+   * @returns {*}
+   */
+  loadViewComponent = () => {
+    const { initialized, playerCount } = this.state;
+
+    if (initialized && playerCount > 0) {
+      return this.getGameInProgress();
+    }
+
+    return playerCount > 0 ? this.getGameSetup() : this.getGameStart();
+  }
+
+  /**
    * Render the game view.
    *
    * @returns {*}
    */
   render() {
-    const { initialized, playerCount } = this.state;
     return (
       <div className="game">
         <Header title="Scorekeeper" />
-        {
-          initialized && playerCount > 0 ?
-              <div>
-                <GameInProgress
-                    players={this.state.players}
-                    playerCount={this.state.playerCount}
-                    activePlayer={this.state.activePlayer}
-                />
-                <ResetControls restart={this.startNewGame.bind(this)} reset={this.resetScores.bind(this)} />
-              </div>
-          : playerCount === 0 ?
-              <GameStart setPlayerCount={this.setPlayerCount} />
-            :
-              <div>
-                <GameSetup
-                    players={this.state.players}
-                    playerCount={this.state.playerCount}
-                    setupPlayerData={this.setupPlayerData}
-                    setGameInitialized={this.setGameInitialized}
-                />
-                <ResetControls restart={this.startNewGame.bind(this)} />
-              </div>
-        }
+        {this.loadViewComponent()}
       </div>
     );
   }
