@@ -15,7 +15,9 @@ const getGameState = () => window.localStorage.getItem(gameCacheId);
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = this.loadGameData(getGameState());
+    this.state = {
+      game: this.loadGameData(getGameState())
+    };
   }
 
   loadGameData(gameInProgress) {
