@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import Button from "../Button";
 
-class GameStart extends Component {
-  playerCountRef = React.createRef();
+const GameStart = (props) => {
+  const { setPlayerCount } = props;
+  const playerCountRef = React.createRef();
 
-  getNumberOfPlayers = event => {
+  const getNumberOfPlayers = event => {
     event.preventDefault();
-    const playerCount = parseInt(this.playerCountRef.current.value, 10);
+    const playerCount = parseInt(playerCountRef.current.value, 10);
 
-    this.props.setPlayerCount(playerCount);
+    setPlayerCount(playerCount);
   };
 
-  render() {
     return (
-      <form className="game-start" onSubmit={this.getNumberOfPlayers}>
+      <form className="game-start" onSubmit={getNumberOfPlayers}>
         <p id="instructions">Welcome to Scorekeeper. How many players?</p>
 
         <div>
@@ -24,7 +24,7 @@ class GameStart extends Component {
             min="0"
             max="9"
             name="playerCount"
-            ref={this.playerCountRef}
+            ref={playerCountRef}
             required
             placeholder={1}
           />
@@ -32,7 +32,6 @@ class GameStart extends Component {
         </div>
       </form>
     );
-  }
 }
 
 export default GameStart;
