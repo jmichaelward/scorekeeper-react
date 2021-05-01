@@ -1,35 +1,41 @@
-import React from "react";
-import Player from "../Player";
-import "./PlayersList.scss";
-
-const isActivePlayer = (activePlayer, key) => {
-    return activePlayer === key;
-};
+import React from 'react'
+import Player from '../Player'
+import './PlayersList.scss'
 
 const PlayersList = (props) => {
-    const {
-        players,
-        activePlayer
-    } = props;
+  const { players, activePlayer } = props;
 
-    return (
-        <section className="players-list-section">
-            <header className="section__hdr">
-                <h2 className="h2 section__hd">Player Scores</h2>
-            </header>
-            <ul className="players-list">
-                {players.map((player, index) => (
-                    <Player
-                        key={index}
-                        playerNumber={player.id}
-                        name={player.name}
-                        score={player.score}
-                        isActive={isActivePlayer(activePlayer, index)}
-                    />
-                ))}
-            </ul>
-        </section>
-    );
-};
+  const isActivePlayer = (activePlayer, key) => {
+    return activePlayer === key
+  }
 
-export default PlayersList;
+  const mapPlayersToList = () => {
+    return players.map((player, index) => {
+        const { id, name, score } = player
+
+        return (
+          <Player
+            key={index}
+            playerNumber={id}
+            name={name}
+            score={score}
+            isActive={isActivePlayer(activePlayer, index)}
+          />
+        )
+      }
+    )
+  }
+
+  return (
+    <section className="players-list-section">
+      <header className="section__hdr">
+        <h2 className="h2 section__hd">Player Scores</h2>
+      </header>
+      <ul className="players-list">
+        {mapPlayersToList()}
+      </ul>
+    </section>
+  )
+}
+
+export default PlayersList
