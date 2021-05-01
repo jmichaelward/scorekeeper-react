@@ -86,7 +86,11 @@ class App extends Component {
   }
 
   setupPlayerData = players => {
-    this.setState({ players });
+    const game = this.state.game;
+
+    game.players = players;
+
+    this.setState({ game: game });
   };
 
   /*

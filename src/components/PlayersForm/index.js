@@ -11,7 +11,8 @@ import './PlayersForm.scss';
  * @constructor
  */
 const PlayersForm = (props) => {
-  const [players, setPlayers] = useState(props.players);
+  const [game, setGame] = useState(props.game);
+  const { players } = game;
 
   /**
    * Returns a set of player inputs for the form.
@@ -36,8 +37,8 @@ const PlayersForm = (props) => {
   };
 
   const updateName = (index, name) => {
-    players[index].name = name;
-    setPlayers(players);
+    game.players[index].name = name;
+    setGame(game);
   };
 
   return (
