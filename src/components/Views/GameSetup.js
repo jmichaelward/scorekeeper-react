@@ -2,7 +2,7 @@ import React from "react";
 import PlayersForm from "../PlayersForm";
 
 const GameSetup = (props) => {
-  const { game, setGameInitialized, setupPlayerData } = props;
+  const { game, setGameInitialized } = props;
 
     return (
       <div className="game-setup">
@@ -10,7 +10,6 @@ const GameSetup = (props) => {
         <PlayersForm
           game={game}
           setGameInitialized={setGameInitialized}
-          setupPlayerData={setupPlayerData}
         />
       </div>
     );

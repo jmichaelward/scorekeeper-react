@@ -97,8 +97,10 @@ class App extends Component {
     Set the game initialization status.
     We'll load the game in progress if the game has been initialized.
      */
-  setGameInitialized = initialized => {
-    this.setState({ initialized });
+  setGameInitialized = (game, initialized) => {
+    game.initialized = initialized;
+
+    this.setState(game);
   };
 
   /**

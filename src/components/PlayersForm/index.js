@@ -11,8 +11,7 @@ import './PlayersForm.scss';
  * @constructor
  */
 const PlayersForm = (props) => {
-  const [game, setGame] = useState(props.game);
-  const { players } = game;
+  const [game] = useState(props.game);
 
   /**
    * Returns a set of player inputs for the form.
@@ -32,19 +31,17 @@ const PlayersForm = (props) => {
 
   const savePlayerData = event => {
     event.preventDefault();
-    props.setGameInitialized(true);
-    props.setupPlayerData(players);
+    props.setGameInitialized(game, true);
   };
 
   const updateName = (index, name) => {
     game.players[index].name = name;
-    setGame(game);
   };
 
   return (
     <form className="players-form" onSubmit={savePlayerData}>
       <div className="players-form">
-        {getPlayerInputs(players, updateName)}
+        {getPlayerInputs(game.players, updateName)}
       </div>
       <Button type="submit" label="Start game" wrapClass="game-start-button-wrap" />
     </form>
