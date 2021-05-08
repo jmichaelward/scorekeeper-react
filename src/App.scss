@@ -49,15 +49,23 @@ h2 {
   }
 }
 
-input[type=text], input[type=number] {
+input[type=text],
+input[type=number] {
   background-color: $color-app-background;
   border: 2px solid $color-input-border;
   border-radius: 5px;
   outline: none;
   font-size: 1rem;
-  padding: 0.5rem;
   transition: border-color 125ms ease-in;
   min-width: 60px;
+}
+
+input[type=text] {
+  padding: 0.5rem;
+}
+
+input[type=number] {
+  padding: 0.5rem 0 0.5rem 0.5rem;
 }
 
 input[type=text]:focus, input[type=number]:focus {
