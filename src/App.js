@@ -60,6 +60,8 @@ class App extends Component {
       player.score = 0;
     });
 
+    game.activePlayer = 0;
+
     this.setState({ game: game });
   }
 
