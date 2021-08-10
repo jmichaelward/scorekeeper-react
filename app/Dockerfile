@@ -1,17 +1,14 @@
-FROM node:14
-
-RUN apt-get update \
-    && apt-get install -y yarn
+FROM node:16
 
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN yarn install
+RUN npm install
 
 COPY . .
 EXPOSE 3000
 
-CMD ["yarn", "start"]
+CMD ["npm", "start"]
 
 
