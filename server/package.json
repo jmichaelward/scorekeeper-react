@@ -1,0 +1,9 @@
+{
+  "name": "scorekeeper-react-server",
+  "version": "1.0.0",
+  "description": "Backend service for the Scorekeeper React app.",
+  "main": "index.js",
+  "repository": "https://github.com/jmichaelward/scorekeeper-react",
+  "author": "Jeremy Ward",
+  "license": "MIT"
+}
